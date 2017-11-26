@@ -191,11 +191,11 @@ $app->put('/api/patient/update/{id}', function(Request $request, Response $respo
     });
 
 // Delete Customer
-$app->delete('/api/customer/delete/{id}', function(Request $request, Response $response) {
+$app->delete('/api/patient/delete/{id}', function(Request $request, Response $response) {
     
         $id = $request->getAttribute('id');
     
-        $sql = "DELETE FROM customers WHERE id = {$id}";
+        $sql = "DELETE FROM patient WHERE PtNum = {$id}";
         
         try {
             // Get DB Object
@@ -208,7 +208,7 @@ $app->delete('/api/customer/delete/{id}', function(Request $request, Response $r
             $stmt->execute();
             $db = null;
             
-            echo '{"notice": {"text": Customer Deleted}';
+            echo '{"notice": {"text": Patient Deleted}';
     
         } catch(PDOException $e) {
             echo '{"error": {"text": '.$e->getMessage().'}';
