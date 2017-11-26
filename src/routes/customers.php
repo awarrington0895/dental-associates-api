@@ -43,11 +43,11 @@ $app->get('/api/patients', function(Request $request, Response $response) {
 });
 
 // Get Single Customer
-$app->get('/api/customer/{id}', function(Request $request, Response $response) {
+$app->get('/api/patient/{id}', function(Request $request, Response $response) {
 
     $id = $request->getAttribute('id');
 
-    $sql = "SELECT * FROM customers WHERE id = {$id}";
+    $sql = "SELECT * FROM patient WHERE PtNum = {$id}";
     
     try {
         // Get DB Object
@@ -57,9 +57,9 @@ $app->get('/api/customer/{id}', function(Request $request, Response $response) {
         $db = $db->connect();
 
         $stmt = $db->query($sql);
-        $customer = $stmt->fetch(PDO::FETCH_OBJ);
+        $patient = $stmt->fetch(PDO::FETCH_OBJ);
         $db = null;
-        echo json_encode($customer);
+        echo json_encode($patient);
 
     } catch(PDOException $e) {
         echo '{"error": {"text": '.$e->getMessage().'}';
