@@ -68,18 +68,27 @@ $app->get('/api/patient/{id}', function(Request $request, Response $response) {
 });
 
 // Add Customer
-$app->post('/api/customer/add', function(Request $request, Response $response) {
+$app->post('/api/patient/add', function(Request $request, Response $response) {
     
-        $first_name = $request->getParam('first_name');
-        $last_name = $request->getParam('last_name');
-        $phone = $request->getParam('phone');
-        $email = $request->getParam('email');
-        $address = $request->getParam('address');
-        $city = $request->getParam('city');
-        $state = $request->getParam('state');
+        $first_name =       $request->getParam('first_name');
+        $last_name =        $request->getParam('last_name');
+        $preferred_name =   $request->getParam('preferred_name');
+        $address =          $request->getParam('address');
+        $city =             $request->getParam('city');
+        $state =            $request->getParam('state');
+        $zip =              $request->getParam('zip');
+        $prim_phone =       $request->getParam('prim_phone');
+        $sec_phone =        $request->getParam('sec_phone');
+        $email =            $request->getParam('email');
+        $allergies =        $request->getParam('allergies');
+        $ins_name =         $request->getParam('ins_name');
+        $ins_number =       $request->getParam('ins_number');
+
     
-        $sql = "INSERT INTO customers (first_name,last_name,phone,email,address,city,state)
-                VALUES (:first_name,:last_name,:phone,:email,:address,:city,:state)";
+        $sql = "INSERT INTO patient (FirstName, LastName, PreferredName, Address, City, State, Zip, PrimPhone, 
+                                    SecPhone, Email, Allergies, InsName, InsNumber)
+                VALUES (:first_name,:last_name, :preferred_name, :address, :city, :state, 
+                        :zip, :prim_phone, :sec_phone, :email, :allergies, :ins_name, :ins_number)";
         
         try {
             // Get DB Object
@@ -90,13 +99,19 @@ $app->post('/api/customer/add', function(Request $request, Response $response) {
     
             $stmt = $db->prepare($sql);
             
-            $stmt->bindParam(':first_name', $first_name);
-            $stmt->bindParam(':last_name',  $last_name);
-            $stmt->bindParam(':phone',      $phone);
-            $stmt->bindParam(':email',      $email);
-            $stmt->bindParam(':address',    $address);
-            $stmt->bindParam(':city',       $city);
-            $stmt->bindParam(':state',      $state);
+            $stmt->bindParam(':first_name',      $first_name);
+            $stmt->bindParam(':last_name',       $last_name);
+            $stmt->bindParam(':preferred_name',  $preferred_name);
+            $stmt->bindParam(':address',         $address);
+            $stmt->bindParam(':city',            $city);
+            $stmt->bindParam(':state',           $state);
+            $stmt->bindParam(':zip',             $zip);
+            $stmt->bindParam(':prim_phone',      $prim_phone);
+            $stmt->bindParam(':sec_phone',       $sec_phone);
+            $stmt->bindParam(':email',           $email);
+            $stmt->bindParam(':allergies',       $allergies);
+            $stmt->bindParam(':ins_name',        $ins_name);
+            $stmt->bindParam(':ins_number',      $ins_number);
 
             $stmt->execute();
 
