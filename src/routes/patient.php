@@ -8,7 +8,7 @@ error_reporting(E_ALL ^ E_WARNING);
 
 
 
-// Get all customers
+// Get all Patients
 $app->get('/api/patients', function(Request $request, Response $response) {
     $sql = "SELECT * FROM patient";
     
@@ -29,7 +29,7 @@ $app->get('/api/patients', function(Request $request, Response $response) {
     }
 });
 
-// Get Single Customer
+// Get Single Patient
 $app->get('/api/patient/{id}', function(Request $request, Response $response) {
 
     $id = $request->getAttribute('id');
@@ -54,7 +54,7 @@ $app->get('/api/patient/{id}', function(Request $request, Response $response) {
 
 });
 
-// Add Customer
+// Add Patient
 $app->post('/api/patient/add', function(Request $request, Response $response) {
     
         $first_name =       $request->getParam('first_name');
@@ -110,7 +110,7 @@ $app->post('/api/patient/add', function(Request $request, Response $response) {
     
     });
 
-// Update Customer
+// Update Patient
 $app->put('/api/patient/update/{id}', function(Request $request, Response $response) {
 
         $id =               $request->getAttribute('id');
@@ -177,7 +177,7 @@ $app->put('/api/patient/update/{id}', function(Request $request, Response $respo
     
     });
 
-// Delete Customer
+// Delete Patient
 $app->delete('/api/patient/delete/{id}', function(Request $request, Response $response) {
     
         $id = $request->getAttribute('id');
