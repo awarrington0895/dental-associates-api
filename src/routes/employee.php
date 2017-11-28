@@ -124,28 +124,28 @@ $app->put('/api/employee/update/{id}', function(Request $request, Response $resp
     
     });
 
-// // Delete Customer
-// $app->delete('/api/patient/delete/{id}', function(Request $request, Response $response) {
+// Delete Employee
+$app->delete('/api/employee/delete/{id}', function(Request $request, Response $response) {
     
-//         $id = $request->getAttribute('id');
+        $id = $request->getAttribute('id');
     
-//         $sql = "DELETE FROM patient WHERE PtNum = {$id}";
+        $sql = "DELETE FROM employee WHERE EmpNum = {$id}";
         
-//         try {
-//             // Get DB Object
-//             $db = new Database();
+        try {
+            // Get DB Object
+            $db = new Database();
             
-//             // Connect
-//             $db = $db->connect();
+            // Connect
+            $db = $db->connect();
     
-//             $stmt = $db->prepare($sql);
-//             $stmt->execute();
-//             $db = null;
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $db = null;
             
-//             echo '{"notice": {"text": Patient Deleted}';
+            echo '{"notice": {"text": Employee Deleted}';
     
-//         } catch(PDOException $e) {
-//             echo '{"error": {"text": '.$e->getMessage().'}';
-//         }
+        } catch(PDOException $e) {
+            echo '{"error": {"text": '.$e->getMessage().'}';
+        }
     
-//     });
+    });
