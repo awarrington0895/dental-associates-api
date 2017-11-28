@@ -24,4 +24,5 @@ $app->add(function ($req, $res, $next) {
 
 //Customer Routes
 require '../src/routes/patient.php';
+require '../src/routes/employee.php';
 $app->run();
