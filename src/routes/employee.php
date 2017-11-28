@@ -24,30 +24,30 @@ $app->get('/api/employees', function(Request $request, Response $response) {
     }
 });
 
-// // Get Single Customer
-// $app->get('/api/patient/{id}', function(Request $request, Response $response) {
+// Get Single Customer
+$app->get('/api/employee/{id}', function(Request $request, Response $response) {
 
-//     $id = $request->getAttribute('id');
+    $id = $request->getAttribute('id');
 
-//     $sql = "SELECT * FROM patient WHERE PtNum = {$id}";
+    $sql = "SELECT * FROM employee WHERE EmpNum = {$id}";
     
-//     try {
-//         // Get DB Object
-//         $db = new Database();
+    try {
+        // Get DB Object
+        $db = new Database();
         
-//         // Connect
-//         $db = $db->connect();
+        // Connect
+        $db = $db->connect();
 
-//         $stmt = $db->query($sql);
-//         $patient = $stmt->fetch(PDO::FETCH_OBJ);
-//         $db = null;
-//         echo json_encode($patient);
+        $stmt = $db->query($sql);
+        $employee = $stmt->fetch(PDO::FETCH_OBJ);
+        $db = null;
+        echo json_encode($employee);
 
-//     } catch(PDOException $e) {
-//         echo '{"error": {"text": '.$e->getMessage().'}';
-//     }
+    } catch(PDOException $e) {
+        echo '{"error": {"text": '.$e->getMessage().'}';
+    }
 
-// });
+});
 
 // // Add Customer
 // $app->post('/api/patient/add', function(Request $request, Response $response) {
