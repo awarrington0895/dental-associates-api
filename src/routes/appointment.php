@@ -131,28 +131,28 @@ $app->put('/api/appointment/update/{id}', function(Request $request, Response $r
     
     });
 
-// // Delete appointment
-// $app->delete('/api/appointment/delete/{id}', function(Request $request, Response $response) {
+// Delete appointment
+$app->delete('/api/appointment/delete/{id}', function(Request $request, Response $response) {
     
-//         $id = $request->getAttribute('id');
+        $id = $request->getAttribute('id');
     
-//         $sql = "DELETE FROM appointment WHERE PtNum = {$id}";
+        $sql = "DELETE FROM appointment WHERE ApptID = {$id}";
         
-//         try {
-//             // Get DB Object
-//             $db = new Database();
+        try {
+            // Get DB Object
+            $db = new Database();
             
-//             // Connect
-//             $db = $db->connect();
+            // Connect
+            $db = $db->connect();
     
-//             $stmt = $db->prepare($sql);
-//             $stmt->execute();
-//             $db = null;
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $db = null;
             
-//             echo '{"notice": {"text": appointment Deleted}';
+            echo '{"notice": {"text": Appointment Deleted}';
     
-//         } catch(PDOException $e) {
-//             echo '{"error": {"text": '.$e->getMessage().'}';
-//         }
+        } catch(PDOException $e) {
+            echo '{"error": {"text": '.$e->getMessage().'}';
+        }
     
-//     });
+    });
