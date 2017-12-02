@@ -87,45 +87,36 @@ $app->post('/api/appt_emp/add', function(Request $request, Response $response) {
     
     });
 
-// // Update appt_emp
-// $app->put('/api/appt_emp/update/{id}', function(Request $request, Response $response) {
+// Update appt_emp
+$app->put('/api/appt_emp/update/{id}', function(Request $request, Response $response) {
 
-//         $id =               $request->getAttribute('id');
-//         $appt_date =        $request->getParam('appt_date');
-//         $appt_time =        $request->getParam('appt_time');
-//         $tx_name =          $request->getParam('tx_name');
-//         $pt_num =           $request->getParam('pt_num');
+        $appt_id =               $request->getAttribute('id');
+        $emp_num =               $request->getParam('emp_num');
     
-//         $sql = "UPDATE appt_emp SET
-//                     ApptDate      = :appt_date,
-//                     ApptTime      = :appt_time,
-//                     TxName        = :tx_name,
-//                     PtNum         = :pt_num
-//                 WHERE ApptID = {$id}";
+        $sql = "UPDATE appt_emp SET
+                    EmpNum      = :emp_num
+                WHERE ApptID = {$appt_id}";
         
-//         try {
-//             // Get DB Object
-//             $db = new Database();
+        try {
+            // Get DB Object
+            $db = new Database();
             
-//             // Connect
-//             $db = $db->connect();
+            // Connect
+            $db = $db->connect();
     
-//             $stmt = $db->prepare($sql);
+            $stmt = $db->prepare($sql);
 
-//             $stmt->bindParam(':appt_date',        $appt_date);
-//             $stmt->bindParam(':appt_time',        $appt_time);
-//             $stmt->bindParam(':tx_name',          $tx_name);
-//             $stmt->bindParam(':pt_num',           $pt_num);
+            $stmt->bindParam(':emp_num', $emp_num);
 
-//             $stmt->execute();
+            $stmt->execute();
 
-//             echo '{"notice": {"text": "appt_emp Updated"}';
+            echo '{"notice": {"text": "appt_emp Updated"}';
     
-//         } catch(PDOException $e) {
-//             echo '{"error": {"text": '.$e->getMessage().'}';
-//         }
+        } catch(PDOException $e) {
+            echo '{"error": {"text": '.$e->getMessage().'}';
+        }
     
-//     });
+    });
 
 // // Delete appt_emp
 // $app->delete('/api/appt_emp/delete/{id}', function(Request $request, Response $response) {
