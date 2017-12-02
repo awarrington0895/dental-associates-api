@@ -118,28 +118,28 @@ $app->put('/api/appt_emp/update/{id}', function(Request $request, Response $resp
     
     });
 
-// // Delete appt_emp
-// $app->delete('/api/appt_emp/delete/{id}', function(Request $request, Response $response) {
+// Delete appt_emp
+$app->delete('/api/appt_emp/delete/{id}', function(Request $request, Response $response) {
     
-//         $id = $request->getAttribute('id');
+        $appt_id = $request->getAttribute('id');
     
-//         $sql = "DELETE FROM appt_emp WHERE ApptID = {$id}";
+        $sql = "DELETE FROM appt_emp WHERE ApptID = {$appt_id}";
         
-//         try {
-//             // Get DB Object
-//             $db = new Database();
+        try {
+            // Get DB Object
+            $db = new Database();
             
-//             // Connect
-//             $db = $db->connect();
+            // Connect
+            $db = $db->connect();
     
-//             $stmt = $db->prepare($sql);
-//             $stmt->execute();
-//             $db = null;
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $db = null;
             
-//             echo '{"notice": {"text": appt_emp Deleted}';
+            echo '{"notice": {"text": appt_emp Deleted}';
     
-//         } catch(PDOException $e) {
-//             echo '{"error": {"text": '.$e->getMessage().'}';
-//         }
+        } catch(PDOException $e) {
+            echo '{"error": {"text": '.$e->getMessage().'}';
+        }
     
-//     });
+    });
