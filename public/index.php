@@ -26,4 +26,5 @@ $app->add(function ($req, $res, $next) {
 require '../src/routes/patient.php';
 require '../src/routes/employee.php';
 require '../src/routes/treatment.php';
+require '../src/routes/appointment.php';
 $app->run();
