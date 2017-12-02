@@ -54,61 +54,44 @@ $app->get('/api/appointment/{id}', function(Request $request, Response $response
 
 });
 
-// // Add Patient
-// $app->post('/api/patient/add', function(Request $request, Response $response) {
+// Add Patient
+$app->post('/api/appointment/add', function(Request $request, Response $response) {
     
-//         $first_name =       $request->getParam('first_name');
-//         $last_name =        $request->getParam('last_name');
-//         $preferred_name =   $request->getParam('preferred_name');
-//         $address =          $request->getParam('address');
-//         $city =             $request->getParam('city');
-//         $state =            $request->getParam('state');
-//         $zip =              $request->getParam('zip');
-//         $prim_phone =       $request->getParam('prim_phone');
-//         $sec_phone =        $request->getParam('sec_phone');
-//         $email =            $request->getParam('email');
-//         $allergies =        $request->getParam('allergies');
-//         $ins_name =         $request->getParam('ins_name');
-//         $ins_number =       $request->getParam('ins_number');
+        $appt_id =          $request->getParam('appt_id');
+        $appt_date =        $request->getParam('appt_date');
+        $appt_time =        $request->getParam('appt_time');
+        $tx_name =          $request->getParam('tx_name');
+        $pt_num =           $request->getParam('pt_num');
 
     
-//         $sql = "INSERT INTO patient (FirstName, LastName, PreferredName, Address, City, State, Zip, PrimPhone, 
-//                                     SecPhone, Email, Allergies, InsName, InsNumber)
-//                 VALUES (:first_name,:last_name, :preferred_name, :address, :city, :state, 
-//                         :zip, :prim_phone, :sec_phone, :email, :allergies, :ins_name, :ins_number)";
+        $sql = "INSERT INTO appointment (ApptId, ApptDate, ApptTime, TxName, PtNum)
+                VALUES (:appt_id, :appt_date, :appt_time, :tx_name, :pt_num)";
         
-//         try {
-//             // Get DB Object
-//             $db = new Database();
+        try {
+            // Get DB Object
+            $db = new Database();
             
-//             // Connect
-//             $db = $db->connect();
+            // Connect
+            $db = $db->connect();
     
-//             $stmt = $db->prepare($sql);
+            $stmt = $db->prepare($sql);
             
-//             $stmt->bindParam(':first_name',      $first_name);
-//             $stmt->bindParam(':last_name',       $last_name);
-//             $stmt->bindParam(':preferred_name',  $preferred_name);
-//             $stmt->bindParam(':address',         $address);
-//             $stmt->bindParam(':city',            $city);
-//             $stmt->bindParam(':state',           $state);
-//             $stmt->bindParam(':zip',             $zip);
-//             $stmt->bindParam(':prim_phone',      $prim_phone);
-//             $stmt->bindParam(':sec_phone',       $sec_phone);
-//             $stmt->bindParam(':email',           $email);
-//             $stmt->bindParam(':allergies',       $allergies);
-//             $stmt->bindParam(':ins_name',        $ins_name);
-//             $stmt->bindParam(':ins_number',      $ins_number);
+            $stmt->bindParam(':appt_id',          $appt_id);
+            $stmt->bindParam(':appt_date',        $appt_date);
+            $stmt->bindParam(':appt_time',        $appt_time);
+            $stmt->bindParam(':tx_name',          $tx_name);
+            $stmt->bindParam(':pt_num',           $pt_num);
 
-//             $stmt->execute();
 
-//             echo '{"notice": {"text": "Patient Added"}';
+            $stmt->execute();
+
+            echo '{"notice": {"text": "Appointment Added"}';
     
-//         } catch(PDOException $e) {
-//             echo '{"error": {"text": '.$e->getMessage().'}';
-//         }
+        } catch(PDOException $e) {
+            echo '{"error": {"text": '.$e->getMessage().'}';
+        }
     
-//     });
+    });
 
 // // Update Patient
 // $app->put('/api/patient/update/{id}', function(Request $request, Response $response) {
