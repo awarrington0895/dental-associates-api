@@ -27,4 +27,5 @@ require '../src/routes/patient.php';
 require '../src/routes/employee.php';
 require '../src/routes/treatment.php';
 require '../src/routes/appointment.php';
+require '../src/routes/appt_emp.php';
 $app->run();
