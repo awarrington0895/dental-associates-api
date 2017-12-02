@@ -54,42 +54,38 @@ $app->get('/api/appt_emp/{id}', function(Request $request, Response $response) {
 
 });
 
-// // Add appt_emp
-// $app->post('/api/appt_emp/add', function(Request $request, Response $response) {
+// Add appt_emp
+$app->post('/api/appt_emp/add', function(Request $request, Response $response) {
     
-//         $appt_date =        $request->getParam('appt_date');
-//         $appt_time =        $request->getParam('appt_time');
-//         $tx_name =          $request->getParam('tx_name');
-//         $pt_num =           $request->getParam('pt_num');
+        $appt_id =          $request->getParam('appt_id');
+        $emp_num =          $request->getParam('emp_num');
 
     
-//         $sql = "INSERT INTO appt_emp (ApptDate, ApptTime, TxName, PtNum)
-//                 VALUES (:appt_date, :appt_time, :tx_name, :pt_num)";
+        $sql = "INSERT INTO appt_emp (ApptID, EmpNum)
+                VALUES (:appt_id, :emp_num)";
         
-//         try {
-//             // Get DB Object
-//             $db = new Database();
+        try {
+            // Get DB Object
+            $db = new Database();
             
-//             // Connect
-//             $db = $db->connect();
+            // Connect
+            $db = $db->connect();
     
-//             $stmt = $db->prepare($sql);
+            $stmt = $db->prepare($sql);
             
-//             $stmt->bindParam(':appt_date',        $appt_date);
-//             $stmt->bindParam(':appt_time',        $appt_time);
-//             $stmt->bindParam(':tx_name',          $tx_name);
-//             $stmt->bindParam(':pt_num',           $pt_num);
+            $stmt->bindParam(':appt_id',        $appt_id);
+            $stmt->bindParam(':emp_num',        $emp_num);
 
 
-//             $stmt->execute();
+            $stmt->execute();
 
-//             echo '{"notice": {"text": "appt_emp Added"}';
+            echo '{"notice": {"text": "appt_emp Entry Added"}';
     
-//         } catch(PDOException $e) {
-//             echo '{"error": {"text": '.$e->getMessage().'}';
-//         }
+        } catch(PDOException $e) {
+            echo '{"error": {"text": '.$e->getMessage().'}';
+        }
     
-//     });
+    });
 
 // // Update appt_emp
 // $app->put('/api/appt_emp/update/{id}', function(Request $request, Response $response) {
