@@ -29,30 +29,30 @@ $app->get('/api/appointments', function(Request $request, Response $response) {
     }
 });
 
-// // Get Single Patient
-// $app->get('/api/patient/{id}', function(Request $request, Response $response) {
+// Get Single Appointment
+$app->get('/api/appointment/{id}', function(Request $request, Response $response) {
 
-//     $id = $request->getAttribute('id');
+    $id = $request->getAttribute('id');
 
-//     $sql = "SELECT * FROM patient WHERE PtNum = {$id}";
+    $sql = "SELECT * FROM appointment WHERE ApptId = {$id}";
     
-//     try {
-//         // Get DB Object
-//         $db = new Database();
+    try {
+        // Get DB Object
+        $db = new Database();
         
-//         // Connect
-//         $db = $db->connect();
+        // Connect
+        $db = $db->connect();
 
-//         $stmt = $db->query($sql);
-//         $patient = $stmt->fetch(PDO::FETCH_OBJ);
-//         $db = null;
-//         echo json_encode($patient);
+        $stmt = $db->query($sql);
+        $appointment = $stmt->fetch(PDO::FETCH_OBJ);
+        $db = null;
+        echo json_encode($appointment);
 
-//     } catch(PDOException $e) {
-//         echo '{"error": {"text": '.$e->getMessage().'}';
-//     }
+    } catch(PDOException $e) {
+        echo '{"error": {"text": '.$e->getMessage().'}';
+    }
 
-// });
+});
 
 // // Add Patient
 // $app->post('/api/patient/add', function(Request $request, Response $response) {
